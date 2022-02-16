@@ -44,21 +44,23 @@ function init() {
   // Tell Web3modal what providers we have available.
   // Built-in web browser provider (only one can exist as a time)
   // like MetaMask, Brave or Opera is added automatically by Web3modal
-//  You have to refer to default since it was bundled for ESModules
-// but after that the documentation will be the same
+  const providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider,
+      options: {
+        // Mikko's test key - don't copy as your mileage may vary
+        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+      }
+    },
 
-const Web3Modal = window.Web3Modal.default;
-const providerOptions = {
-  /* See Provider Options Section */
-};
-
-const web3Modal = new Web3Modal({
-  network: "mainnet", // optional
-  cacheProvider: true, // optional
-  providerOptions // required
-});
-
-const provider = await web3Modal.connect();
+    fortmatic: {
+      package: Fortmatic,
+      options: {
+        // Mikko's TESTNET api key
+        key: "pk_test_391E26A3B43A3350"
+      }
+    }
+  };
 
   web3Modal = new Web3Modal({
     cacheProvider: false, // optional
